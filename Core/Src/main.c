@@ -88,13 +88,15 @@ int main(void)
   MX_GPIO_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-
+  int adcVal;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  // Read the analog value on pin A0
+	  adcVal = analogRead(A0);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
