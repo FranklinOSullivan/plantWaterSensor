@@ -93,19 +93,30 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   int adcVal;
+  char uart_buf[50];
+  int uart_buf_len;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uart_buf_len = sprintf(uart_buf, "Dice Test\r\n");
+  HAL_UART_Transmit(&huart2, (uint8_t *)uart_buf, uart_buf_len, 100);
   while (1)
   {
-	  // Read the analog value on pin A0
-	  adcVal = analogRead(A0);
-	  // Print the read value
-	  printf("The value is %i\r\n", adcVal);
+	// Start the ADC reading
+	  HAL_ADC_Start(&hadc1);
+	  // Poll ADC1 peripheral for 1msec
+	  HAL_ADC_PollForConversion(&hadc1, 1);
+	  // Read ADC conversion
+	  adcVal = HAL_ADC_GetValue(&hadc1);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	// Show current value
+    uart_buf_len = sprintf(uart_buf, "Current ADC reading: %u\r\n", adcVal);
+	HAL_UART_Transmit(&huart2, (uint8_t *)uart_buf, uart_buf_len, 100);
+	// Delay for 50ms
+	HAL_Delay(50);
   }
   /* USER CODE END 3 */
 }
@@ -245,6 +256,7 @@ static void MX_GPIO_Init(void)
 {
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
 }
