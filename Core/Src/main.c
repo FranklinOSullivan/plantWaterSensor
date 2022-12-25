@@ -104,11 +104,11 @@ int main(void)
   while (1)
   {
 	// Start the ADC reading
-	  HAL_ADC_Start(&hadc1);
-	  // Poll ADC1 peripheral for 1msec
-	  HAL_ADC_PollForConversion(&hadc1, 1);
-	  // Read ADC conversion
-	  adcVal = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Start(&hadc1);
+	// Poll ADC1 peripheral for 1msec
+	HAL_ADC_PollForConversion(&hadc1, 1);
+	// Read ADC conversion
+	adcVal = HAL_ADC_GetValue(&hadc1);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
