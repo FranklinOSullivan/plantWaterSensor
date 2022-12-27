@@ -106,7 +106,7 @@ int main(void)
 	// Start the ADC reading
 	HAL_ADC_Start(&hadc1);
 	// Poll ADC1 peripheral for 1msec
-	HAL_ADC_PollForConversion(&hadc1, 1);
+	HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
 	// Read ADC conversion
 	adcVal = HAL_ADC_GetValue(&hadc1);
     /* USER CODE END WHILE */
@@ -230,7 +230,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 9600;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
