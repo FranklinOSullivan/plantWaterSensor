@@ -115,8 +115,8 @@ int main(void)
 	// Show current value
     uart_buf_len = sprintf(uart_buf, "Current ADC reading: %u\r\n", adcVal);
 	HAL_UART_Transmit(&huart2, (uint8_t *)uart_buf, uart_buf_len, 100);
-	// Delay for 50ms
-	HAL_Delay(500);
+	// Delay for 5s
+	HAL_Delay(5000);
   }
   /* USER CODE END 3 */
 }
@@ -184,7 +184,7 @@ static void MX_ADC1_Init(void)
   */
   hadc1.Instance = ADC1;
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
-  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.Resolution = st;
   hadc1.Init.ScanConvMode = DISABLE;
   hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
